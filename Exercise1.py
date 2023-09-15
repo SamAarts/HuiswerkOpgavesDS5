@@ -16,8 +16,6 @@ filtered_records = [record for record in records if float(record['Grade']) >= 80
 print("Student Report")
 print("--------------")
 
-
-
 def display(dictionary: dict={})->None:
     '''
     A function that given a dictionary will print a key and its given values line by line
