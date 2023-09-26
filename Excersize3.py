@@ -55,7 +55,7 @@ def calculate_page_rank(G, alpha, T):
     return page_rank
 
 
-n0 = 5  
+n0 = 3  
 N = 400  
 M = 4  
 alpha = 0.15  
@@ -79,4 +79,8 @@ plt.hist(page_rank.values(), bins=20, alpha=0.75)
 plt.title('PageRank Distribution')
 plt.xlabel('PageRank Value')
 plt.ylabel('Frequency')
-plt.show()
+plt.show()  
+
+
+
+
