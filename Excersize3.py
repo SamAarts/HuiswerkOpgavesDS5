@@ -6,22 +6,26 @@ import networkx as nx
 import numpy as np
 
 def generate_barabasi_albert_graph(n0, N, M):
-    # Create a star graph with n0 nodes
+    """
+    We genereren met deze defentie een grafiek met n0 nodes, N nodes aan de buitenkant en M grootte van de nodes
+    
+    """
+    # De beginster gaan we maken met n0 nodes om de hub en we noemen deze samenstelling G. Het eerste spinnenweb is dus G
     G = nx.star_graph(n0)
     
-    # Add N - n0 nodes with preferential attachment
+    # We maken N - n0 nieuwe nodes en voegen deze aan de buitenkant van G (het oorspronkelijke spinnenweb dus)
     for k in range(n0, N):
-        # Calculate link probabilities for each existing node
+        # We rekenen uit wat de kans is dat er lijn zit tussen 2 nodes
         probabilities = [G.degree(i) / (2 * (G.number_of_edges())) for i in G.nodes]
         
-        # Choose M existing nodes to connect to the new node
+        # Kies M bestaande nodes om met de nieuwe node te verbinden
         targets = np.random.choice(G.nodes, size=M, replace=False, p=probabilities)
         
-        # Add the new node and its edges
+        # Hier voegen we de nieuwe node daadwerkelijk toe en voegen we hem teo aan het spinnenweb 
         G.add_node(k)
         for target in targets:
             G.add_edge(k, target)
-    
+    # Hier geven we het spinnenweb terug   
     return G
 
 
@@ -50,27 +54,27 @@ def calculate_page_rank(G, alpha, T):
     
     return page_rank
 
-# Parameters
-n0 = 5  # Initial star graph nodes
-N = 400  # Total number of nodes
-M = 4  # Number of links for each new node
-alpha = 0.15  # Probability to follow a link
-T = 100000  # Number of steps for PageRank simulation
 
-# Generate the Barabasi-Albert graph
+n0 = 5  
+N = 400  
+M = 4  
+alpha = 0.15  
+T = 100000  
+
+# Hier voeren we de eerder gemaakte functie uit met bovenstaande getallen
 G = generate_barabasi_albert_graph(n0, N, M)
 
 # Calculate PageRank
 page_rank = calculate_page_rank(G, alpha, T)
 
-# Visualize the network
+# print de grafiek
 plt.figure(figsize=(10, 8))
 pos = nx.spring_layout(G, seed=42)
 nx.draw(G, pos, node_size=10, node_color='b', with_labels=False, alpha=0.5)
 plt.title('Barabasi-Albert Network')
 plt.show()
 
-# Visualize PageRank distribution
+# print de histogram
 plt.hist(page_rank.values(), bins=20, alpha=0.75)
 plt.title('PageRank Distribution')
 plt.xlabel('PageRank Value')
