@@ -7,7 +7,7 @@ import numpy as np
 
 def generate_barabasi_albert_graph(n0, N, M):
     """
-    We genereren met deze defentie een grafiek met n0 nodes, N nodes aan de buitenkant en M grootte van de nodes
+    We genereren met deze defenitie een grafiek met n0 nodes, N nodes aan de buitenkant en M grootte van de nodes
     
     """
     # De beginster gaan we maken met n0 nodes om de hub en we noemen deze samenstelling G. Het eerste spinnenweb is dus G
