@@ -1,6 +1,8 @@
 # we zijn van start
 import pandas as pindas
- 
+
+
+def 
 project4dataframe = pindas.read_excel('dataProject4.xlsx',sheet_name='20000-211000')
 
 project4dataframe.drop_duplicates(inplace=True)
@@ -24,6 +26,3 @@ project4dataframe = df
 project4dataframe = project4dataframe[project4dataframe['CRM'] != 'Result']
 project4dataframe.reset_index(inplace=True, drop=True)
 
-
-
-#print(project4dataframe.head(5))
